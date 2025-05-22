@@ -29,7 +29,7 @@ function preload() {
 const Veloity =200;
 let bird = null;
 const flapvelocity=250;
-const initialpos={x:config.width * 0.1,y:config.height/2};
+const initialpos={x:config.width * 0.1,y:config.height/2}; // initial position of the bird
 let upperpipe=null;
 let lowerpipe=null;
 
