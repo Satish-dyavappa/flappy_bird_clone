@@ -26,6 +26,7 @@ class PlayScene extends Phaser.Scene {
         this.createBG();
         this.createBird();
         this.createPipes();
+        this.createcollisions();
         this.handleinputs();
     }
     // update is a function that is called every frame, update the game objects and handle user input
@@ -56,6 +57,10 @@ class PlayScene extends Phaser.Scene {
         this.pipes.setVelocityX(-200);
     }
 
+    createcollisions(){
+     this.physics.add.collider(this.bird,this.pipes,this.gameover,null,this);
+    }
+
     handleinputs(){
         this.input.on("pointerdown",this.flap,this);
         this.input.keyboard.on("keydown-SPACE",this.flap,this);
@@ -63,7 +68,7 @@ class PlayScene extends Phaser.Scene {
 
     CheckGameStatus(){
         if(this.bird.y > this.config.height || this.bird.y< -this.bird.height){
-            this.initialBirdPosition();
+            this.gameover();
         }
     }
 
@@ -103,7 +108,7 @@ class PlayScene extends Phaser.Scene {
       return RightmostX;
       }
       
-    initialBirdPosition(){
+    gameover(){
       this.bird.x=this.config.startposition.x;
       this.bird.y=this.config.startposition.y;
       this.bird.body.velocity.y=0;
